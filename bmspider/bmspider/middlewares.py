@@ -3,10 +3,8 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-from scrapy import signals
-
 # useful for handling different item types with a single interface
-from itemadapter import is_item, ItemAdapter
+from scrapy import signals
 
 
 class BmspiderSpiderMiddleware:
@@ -33,8 +31,7 @@ class BmspiderSpiderMiddleware:
         # it has processed the response.
 
         # Must return an iterable of Request, or item objects.
-        for i in result:
-            yield i
+        yield from result
 
     def process_spider_exception(self, response, exception, spider):
         # Called when a spider or process_spider_input() method
@@ -49,8 +46,7 @@ class BmspiderSpiderMiddleware:
         # that it doesn’t have a response associated.
 
         # Must return only requests (not items).
-        for r in start_requests:
-            yield r
+        yield from start_requests
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
