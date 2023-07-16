@@ -1,18 +1,19 @@
-# Scrapy settings for bmspider project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import logging
+from datetime import datetime
+from pathlib import Path
+
+now = datetime.now()
+BASE_DIR = Path(__file__).resolve(True).parent.parent
+_LOG_FILE = BASE_DIR / "log" / f"{now:%Y%m%d_%H%M%S}.log"
+
+logging.basicConfig(filename=_LOG_FILE, format="%(asctime)s [%(name)s] %(levelname)s: %(message)s", level=logging.INFO)
 
 BOT_NAME = "bmspider"
 
 SPIDER_MODULES = ["bmspider.spiders"]
 NEWSPIDER_MODULE = "bmspider.spiders"
 
-# noqa: E501 Crawl responsibly by identifying yourself (and your website) on the user-agent
+# noqa: Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "bmspider (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
@@ -79,7 +80,7 @@ ITEM_PIPELINES = {
 # AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
-# noqa: E501 See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
+# noqa: See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 # HTTPCACHE_ENABLED = True
 # HTTPCACHE_EXPIRATION_SECS = 0
 # HTTPCACHE_DIR = "httpcache"
