@@ -94,7 +94,7 @@ $ git clone https://github.com/christianalcantara/bmspider.git
 #### Instalação
 
 ```bash
-$ cd plp # Acessar o diretório do projeto
+$ cd bmspider # Acessar o diretório do projeto
 $ docker compose up
 # ou
 $ docker-compose up
