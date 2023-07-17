@@ -1,0 +1,16 @@
+<div class="card mb-2">
+  <div class="card-header">Quote</div>
+  <div class="card-body">
+    <blockquote class="blockquote">
+      <p>{{ quote.text }}</p>
+      <footer class="blockquote-footer">
+        by <cite title="Source Title">{{ quote.author.name }}</cite>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card-footer text-body-secondary">
+    {% for tag in quote.tags %}
+    <span class="tag">{{ tag.tag.name }}</span>
+    {% endfor %}
+  </div>
+</div>

@@ -20,6 +20,9 @@ class Author(BaseModel):
     class Meta:
         db_table = "author"
 
+    def __str__(self):
+        return self.name
+
 
 class Quote(BaseModel):
     text = TextField(index=True)
@@ -29,6 +32,9 @@ class Quote(BaseModel):
         db_table = "quote"
         indexes = [(("text", "author"), True)]
 
+    def __str__(self):
+        return self.text
+
 
 class Tag(BaseModel):
     name = CharField(max_length=100, index=True, unique=True)
@@ -36,9 +42,12 @@ class Tag(BaseModel):
     class Meta:
         db_table = "tag"
 
+    def __str__(self):
+        return self.name
+
 
 class QuoteTag(BaseModel):
-    quote = ForeignKeyField(model=Quote)
+    quote = ForeignKeyField(model=Quote, backref="tags")
     tag = ForeignKeyField(model=Tag)
 
 
