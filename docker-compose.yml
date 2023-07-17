@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  bmspider: &bmspider
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: bmspider
+    container_name: bmspider
+    volumes:
+      - .:/app:/data
+    ports:
+      - '5000:5000'
+    command: /start-webserver.sh
+
+  scrapyd:
+    <<: *bmspider
+    image: scrapyd
+    container_name: scrapyd
+    ports:
+      - '6800:6800'
+    command: /start-scrapyd.sh
