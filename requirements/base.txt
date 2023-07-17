@@ -2,3 +2,5 @@ Scrapy==2.9.0
 peewee==3.16.2
 Jinja2==3.1.2
 Werkzeug==2.3.6
+scrapyd==1.4.2
+scrapyd-client==1.2.3
